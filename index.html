@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>github.io</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Links</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .links-container {
+            margin-top: 20px;
+        }
+        .link-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .link-item a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .link-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h3>links here</h3>
-    <a href="links/Magi_1.0_and_Pat_v2.html">Magi_1.0_and_Pat_v2.html</a>
+    <h1>My HTML Files</h1>
+    <div id="links" class="links-container"></div>
+
+    <script>
+        // List all your HTML files here
+        const htmlFiles = [
+            'Magi_1.0_and_Pat_v2.html',
+        ];
+
+        const linksContainer = document.getElementById('links');
+
+        htmlFiles.forEach(file => {
+            const linkItem = document.createElement('div');
+            linkItem.className = 'link-item';
+            
+            const link = document.createElement('a');
+            link.href = `links/${file}`;
+            // Create a nice display name from the filename
+            link.textContent = file.replace('.html', '').replace(/-/g, ' ');
+            
+            linkItem.appendChild(link);
+            linksContainer.appendChild(linkItem);
+        });
+    </script>
 </body>
 </html>
