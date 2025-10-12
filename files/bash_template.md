@@ -10,7 +10,7 @@ Only one line, at the very end, is not in a bash function, so the entire script 
 
 main() {
    get_args $@
-   start_processing  # usually renamed to describe porcessing here and in function name below
+   start_processing  # usually renamed to describe processing here and in function name below
 }
 
 function start_processing {
