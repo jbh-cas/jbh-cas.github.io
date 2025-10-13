@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bash_template</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 50em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 20px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      padding: 1em;
+      overflow: auto;
+    }
+    pre code {
+      padding: ;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: whitesmoke;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<p><strong>BASH Script File Template Structure</strong></p>
+<p>This is the structure for bash script files so they can be read
+from top to bottom.<br>Only one line, at the very end, is not in a bash
+function, so the entire script is parsed before running main().</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> replace contents of start_processing, get_args and usage functions and add others as needed.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">main()</span> <span class="kw">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   <span class="ex">get_args</span> <span class="va">$@</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   <span class="ex">start_processing</span>  <span class="co"># usually renamed to describe processing here and in function name below</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> start_processing</span> <span class="kw">{</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>   <span class="bu">:</span> replace with your own processing code</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># support functions here</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"><br># arguments and usage</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> get_args</span> <span class="kw">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>   <span class="va">BoldRed</span><span class="op">=</span><span class="st">&quot;\033[1;31m&quot;</span><span class="kw">;</span> <span class="va">NC</span><span class="op">=</span><span class="st">&quot;\033[0m&quot;</span><span class="kw">;</span> <span class="va">Blue</span><span class="op">=</span><span class="st">&quot;\033[0;34m&quot;</span><span class="kw">;</span> <span class="va">Green</span><span class="op">=</span><span class="st">&quot;\033[0;32m&quot;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>   <span class="bu">:</span> args into vars here, eg tsv_file=<span class="va">$1</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> usage</span> <span class="kw">{</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">script_name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$0)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-z</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">err_msg</span> <span class="st">&quot;\n    </span><span class="va">$@</span><span class="st">&quot;</span>  <span class="co"># error message passed in to show</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>   <span class="co"># change this to match the arguments that your script expects</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="st">    usage: </span><span class="va">$script_name</span><span class="st"> &lt;args&gt; &lt;here&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>   <span class="bu">exit</span> 1</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> err_msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="va">$BoldRed</span><span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span><span class="va">$NC</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span>  <span class="co"># bold red</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># call main to start things off, passing all the arguments</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ex">main</span> <span class="va">$@</span></span></code></pre></div>
+<p><br></p>
+<p><strong>Template Version 1</strong></p>
+<p>This is an example version of the template that shows simple
+positional based argument parsing.<br />
+It uses bawk, i.e., bioawk_cas, at
+https://github.com/calacademy-research/bioawk.CAS and<br />
+get_int_val.sh at
+https://github.com/calacademy-research/assembly_etc/scripts/get_int_val.sh</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> replace contents of start_processing, get_args and usage functions and add others as needed.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">main()</span> <span class="kw">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   <span class="ex">get_args</span> <span class="va">$@</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>   <span class="ex">start_processing</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> start_processing</span> <span class="kw">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>   <span class="co"># replace with your own processing code</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">start_time</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%s<span class="va">)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">nrecs</span><span class="op">=</span><span class="va">$(</span><span class="ex">num_fasta_recs</span><span class="va">)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;tsv:\t</span><span class="va">$tsv</span><span class="st">\nfasta:\t</span><span class="va">$fasta</span><span class="st">, </span><span class="va">$nrecs</span><span class="st"> recs\nthreads:</span><span class="va">$threads</span><span class="st">&quot;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sleep</span> <span class="va">$((RANDOM</span> <span class="op">%</span> <span class="dv">6</span><span class="va">))</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>   <span class="ex">show_time_spent</span> <span class="va">$start_time</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#              utility and support functions               #</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> num_fasta_recs</span> <span class="kw">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>   <span class="ex">bawk</span> <span class="st">&#39;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="st">      { recs++ }</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="st">      END { print recs }</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="st">   &#39;</span> <span class="va">$fasta</span>  <span class="co"># uses var already determined to be a fasta file</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> show_time_spent</span> <span class="kw">{</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="cf">return</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">start_time</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">seconds_spent</span><span class="op">=</span><span class="va">$(</span><span class="ex">seconds_to_now</span> <span class="va">$start_time)</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;time spent:&quot;</span> <span class="va">$(</span><span class="ex">seconds_to_duration</span> <span class="va">$seconds_spent)</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co">#                   arguments and usage                    #</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> get_args when just positional args, use Template Version 2 when dash args and/or positional args</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> get_args</span> <span class="kw">{</span>  <span class="co"># just positional arguments, in this example a regular file, fasta file and optional number for thread count</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>   <span class="va">tsv</span><span class="op">=</span><span class="va">$1</span>  <span class="co"># first arg must be name of a non-empty file</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-s</span> <span class="st">&quot;</span><span class="va">$tsv</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span> <span class="st">&quot;first arg must be a non-empty file&quot;</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>   <span class="va">fasta</span><span class="op">=</span><span class="va">$2</span>  <span class="co"># looking for a fasta file as second arg</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>   <span class="ot">! </span><span class="ex">is_fasta</span> <span class="st">&quot;</span><span class="va">$fasta</span><span class="st">&quot;</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span> <span class="st">&quot;second arg requires a fasta file&quot;</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>   <span class="va">threads</span><span class="op">=</span><span class="va">$3</span>  <span class="co"># optional 3rd arg for thread count</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$threads</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">threads</span><span class="op">=</span>16  <span class="co"># default to 16 threads</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$(</span><span class="ex">get_int_val.sh</span> <span class="va">$threads)</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span> <span class="st">&quot;thread value is not a number&quot;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> usage</span> <span class="kw">{</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">pgm_name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$0)</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-z</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">err_msg</span> <span class="st">&quot;\n    </span><span class="va">$@</span><span class="st">&quot;</span>  <span class="co"># error message passed in to show</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>   <span class="co"># change this to match the arguments that your script expects</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="st">    usage: </span><span class="va">$pgm_name</span><span class="st"> &lt;file&gt; &lt;fasta file&gt; [&lt;num threads&gt;]</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>   <span class="bu">exit</span> 1</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> err_msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;\033[1;31m</span><span class="va">$@</span><span class="st">\033[0m&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span>  <span class="co"># bold red</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> inf_msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;\033[1;34m</span><span class="va">$@</span><span class="st">\033[0m&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span>  <span class="co"># bold blue</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> succ_msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;\033[1;32m</span><span class="va">$@</span><span class="st">\033[0m&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span> <span class="co"># bold green</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_fasta</span> <span class="kw">{</span> <span class="ex">get_file_first_char</span> <span class="va">$1</span><span class="kw">;</span> <span class="kw">[[</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;&gt;&quot;</span> <span class="kw">]];</span> <span class="kw">}</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_fastq</span> <span class="kw">{</span> <span class="ex">get_file_first_char</span> <span class="va">$1</span><span class="kw">;</span> <span class="kw">[[</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;@&quot;</span> <span class="kw">]];</span> <span class="kw">}</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_fastx</span> <span class="kw">{</span> <span class="ex">get_file_first_char</span> <span class="va">$1</span><span class="kw">;</span> <span class="kw">[[</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;@&quot;</span> <span class="kw">||</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;&gt;&quot;</span> <span class="kw">]];</span> <span class="kw">}</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> get_file_first_char</span> <span class="kw">{</span> <span class="bu">local</span> <span class="va">file</span><span class="op">=</span><span class="va">$1</span><span class="kw">;</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-s</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">first_char</span><span class="op">=</span><span class="st">&quot;X&quot;</span> <span class="kw">&amp;&amp;</span> <span class="cf">return</span><span class="kw">;</span>  <span class="va">first_char</span><span class="op">=</span><span class="va">$(</span> <span class="fu">zgrep</span> <span class="at">-m</span> 1 <span class="at">-o</span> ^. <span class="va">$file)</span><span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> seconds_to_now</span> <span class="kw">{</span> <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="cf">return</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$((</span> <span class="va">$(</span><span class="fu">date</span> +%s<span class="va">)</span> <span class="op">-</span> <span class="va">$1</span> <span class="va">))</span><span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> seconds_to_duration</span> <span class="kw">{</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>   <span class="va">t</span><span class="op">=</span><span class="va">$1</span><span class="kw">;</span> <span class="va">d</span><span class="op">=</span><span class="va">$((t</span><span class="op">/</span><span class="dv">60</span><span class="op">/</span><span class="dv">60</span><span class="op">/</span><span class="dv">24</span><span class="va">))</span><span class="kw">;</span> <span class="va">h</span><span class="op">=</span><span class="va">$((t</span><span class="op">/</span><span class="dv">60</span><span class="op">/</span><span class="dv">60</span><span class="op">%</span><span class="dv">24</span><span class="va">))</span><span class="kw">;</span> <span class="va">m</span><span class="op">=</span><span class="va">$((t</span><span class="op">/</span><span class="dv">60</span><span class="op">%</span><span class="dv">60</span><span class="va">))</span><span class="kw">;</span> <span class="va">s</span><span class="op">=</span><span class="va">$((t</span><span class="op">%</span><span class="dv">60</span><span class="va">))</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>   <span class="bu">printf</span> <span class="st">&#39;%dd%02dh%02dm%02ds\n&#39;</span> <span class="va">$d</span> <span class="va">$h</span> <span class="va">$m</span> <span class="va">$s</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> s/^0d// <span class="at">-e</span> s/00<span class="pp">[</span><span class="ss">mh</span><span class="pp">]</span>//g  <span class="co"># do not show 0 days, hours, min</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="co">#############################################################</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> calls main to start things off, passing all the arguments :</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="co">#############################################################</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ex">main</span> <span class="va">$@</span></span></code></pre></div>
+<p><br></p>
+<p><strong>Template Version 2</strong></p>
+<p>This version handles more complex argument parsing with dash args and
+positional args, but is otherwise the same as Version 1.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> replace contents of start_processing, get_args and usage functions and add others as needed.</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">main()</span> <span class="kw">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>   <span class="va">version</span><span class="op">=</span><span class="st">&quot;0.1&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>   <span class="ex">get_args</span> <span class="va">$@</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>   <span class="ex">start_processing</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> start_processing</span> <span class="kw">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>   <span class="co"># replace with your own processing code</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">start_time</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%s<span class="va">)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">nrecs</span><span class="op">=</span><span class="va">$(</span><span class="ex">num_fasta_recs</span><span class="va">)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;tsv:\t</span><span class="va">$tsv</span><span class="st">\nfasta:\t</span><span class="va">$fasta</span><span class="st">, </span><span class="va">$nrecs</span><span class="st"> recs\nthreads:</span><span class="va">$threads</span><span class="st">&quot;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sleep</span> <span class="va">$((RANDOM</span> <span class="op">%</span> <span class="dv">6</span><span class="va">))</span>  <span class="co"># sleep from 0 to 5 seconds depending on RANDOW value</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>   <span class="ex">show_time_spent</span> <span class="va">$start_time</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#              utility and support functions               #</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> num_fasta_recs</span> <span class="kw">{</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>   <span class="ex">bawk</span> <span class="st">&#39;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">      { recs++ }</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">      END { print recs }</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="st">   &#39;</span> <span class="va">$fasta</span>  <span class="co"># uses var already determined to be a fasta file</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> show_time_spent</span> <span class="kw">{</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="cf">return</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">start_time</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">seconds_spent</span><span class="op">=</span><span class="va">$(</span><span class="ex">seconds_to_now</span> <span class="va">$start_time)</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;time spent:&quot;</span> <span class="va">$(</span><span class="ex">seconds_to_duration</span> <span class="va">$seconds_spent)</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co">#                   arguments and usage                    #</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co">############################################################</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> get_args to handle dash arguments as well as positional ones. use template_v1.sh when just positional args</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> get_args</span> <span class="kw">{</span>  <span class="co"># for handling dash arguments as well as positional ones</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>   <span class="va">pgm_name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$0)</span>  <span class="co"># for usage and version info</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span>  <span class="co"># comment or delete if no args is OK</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>   <span class="va">last_arg</span><span class="op">=</span><span class="va">${</span><span class="op">!#</span><span class="va">}</span>  <span class="co"># example of how to get last argument. set -- &quot;${@:1:$#-1}&quot;  # removes current last arg and resets the argument list and count</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>   <span class="cf">while</span> <span class="kw">((</span> <span class="va">$#</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">));</span>  <span class="cf">do</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>      <span class="va">arg</span><span class="op">=</span><span class="va">$1</span><span class="kw">;</span> <span class="bu">shift</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$arg</span> <span class="ot">!=</span> <span class="st">&quot;-&quot;</span><span class="pp">*</span> <span class="kw">]];</span> <span class="cf">then</span>  <span class="co"># positional arguments handled here</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>         <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$tsv</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">tsv</span><span class="op">=</span><span class="va">$arg</span> <span class="kw">&amp;&amp;</span> <span class="cf">continue</span>  <span class="co"># first positional is tsv filename</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>         <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$fasta</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">fasta</span><span class="op">=</span><span class="va">$arg</span> <span class="kw">&amp;&amp;</span> <span class="cf">continue</span>  <span class="co"># second positional is fasta filename</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>         <span class="va">int_val</span><span class="op">=</span><span class="va">$(</span><span class="ex">get_int_val.sh</span> <span class="va">$arg)</span>  <span class="co"># 3rd positional is int. empty str if not integer style val</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>         <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-z</span> <span class="va">$int_val</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">threads</span><span class="op">=</span><span class="va">$int_val</span> <span class="kw">&amp;&amp;</span> <span class="cf">continue</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>  <span class="co"># dash arguments, both alone and with a value handled here</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>         <span class="kw">[[</span> <span class="va">$arg</span> <span class="ot">==</span> <span class="st">&quot;-h&quot;</span> <span class="kw">||</span> <span class="va">$arg</span> <span class="ot">==</span> <span class="st">&quot;--help&quot;</span> <span class="kw">]]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>         <span class="kw">[[</span> <span class="va">$arg</span> <span class="ot">==</span> <span class="st">&quot;-v&quot;</span> <span class="kw">||</span> <span class="va">$arg</span> <span class="ot">==</span> <span class="st">&quot;--version&quot;</span> <span class="kw">]]</span> <span class="kw">&amp;&amp;</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-z</span> <span class="va">$version</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">msg</span> <span class="va">$pgm_name</span> <span class="va">$version</span> <span class="kw">&amp;&amp;</span> <span class="bu">exit</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>         <span class="co"># handle dash args with value here, e.g. for threads, -t 32</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>         <span class="va">dash_arg_val</span><span class="op">=</span><span class="va">$1</span><span class="kw">;</span>  <span class="bu">:</span> important to shift with those that use this value as below</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>         <span class="kw">[[</span> <span class="va">$arg</span> <span class="ot">==</span> <span class="st">&quot;-t&quot;</span> <span class="kw">||</span> <span class="va">$arg</span> <span class="ot">==</span> <span class="st">&quot;--threads&quot;</span> <span class="kw">]]</span> <span class="kw">&amp;&amp;</span> <span class="va">threads</span><span class="op">=</span><span class="va">$dash_arg_val</span> <span class="kw">&amp;&amp;</span> <span class="bu">shift</span> <span class="kw">&amp;&amp;</span> <span class="cf">continue</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>         <span class="ex">usage</span> unrecognized argument <span class="st">&#39;&quot;&#39;</span><span class="va">$arg</span><span class="st">&#39;&quot;&#39;</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>      <span class="cf">fi</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>   <span class="cf">done</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>   <span class="co"># validate args here and set defaults</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-s</span> <span class="st">&quot;</span><span class="va">$tsv</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span> <span class="st">&quot;first arg must be a non-empty file&quot;</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>   <span class="ot">! </span><span class="ex">is_fasta</span> <span class="st">&quot;</span><span class="va">$fasta</span><span class="st">&quot;</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span> <span class="st">&quot;second arg requires a fasta file&quot;</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>   <span class="ex">set_threads</span> <span class="va">$threads</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> usage</span> <span class="kw">{</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-z</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">err_msg</span> <span class="st">&quot;\n    </span><span class="va">$@</span><span class="st">&quot;</span>  <span class="co"># error message passed in to show</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>   <span class="co"># change this to match the arguments that your script expects</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="st">    usage: </span><span class="va">$pgm_name</span><span class="st"> &lt;file&gt; &lt;fasta file&gt; [ -t &lt;num_threads&gt; ]</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>   <span class="bu">exit</span> 1</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> set_threads</span> <span class="kw">{</span>  <span class="co"># potential thread arg passed in as arg 1</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">threads</span><span class="op">=</span>16  <span class="co"># set thread default if not set on command line</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>   <span class="va">threads</span><span class="op">=</span><span class="va">$(</span><span class="ex">get_int_val.sh</span> <span class="va">$threads)</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>   <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$threads</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">usage</span> <span class="st">&quot;thread value is not a number&quot;</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> err_msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;\033[1;31m</span><span class="va">$@</span><span class="st">\033[0m&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span>  <span class="co"># bold red</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> inf_msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;\033[1;34m</span><span class="va">$@</span><span class="st">\033[0m&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span>  <span class="co"># bold blue</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> succ_msg</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;\033[1;32m</span><span class="va">$@</span><span class="st">\033[0m&quot;</span> <span class="op">&gt;</span> /dev/stderr<span class="kw">;</span> <span class="kw">}</span> <span class="co"># bold green</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_fasta</span> <span class="kw">{</span> <span class="ex">get_file_first_char</span> <span class="va">$1</span><span class="kw">;</span> <span class="kw">[[</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;&gt;&quot;</span> <span class="kw">]];</span> <span class="kw">}</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_fastq</span> <span class="kw">{</span> <span class="ex">get_file_first_char</span> <span class="va">$1</span><span class="kw">;</span> <span class="kw">[[</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;@&quot;</span> <span class="kw">]];</span> <span class="kw">}</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_fastx</span> <span class="kw">{</span> <span class="ex">get_file_first_char</span> <span class="va">$1</span><span class="kw">;</span> <span class="kw">[[</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;@&quot;</span> <span class="kw">||</span> <span class="va">$first_char</span> <span class="ot">==</span> <span class="st">&quot;&gt;&quot;</span> <span class="kw">]];</span> <span class="kw">}</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> get_file_first_char</span> <span class="kw">{</span> <span class="bu">local</span> <span class="va">file</span><span class="op">=</span><span class="va">$1</span><span class="kw">;</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-s</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">first_char</span><span class="op">=</span><span class="st">&quot;X&quot;</span> <span class="kw">&amp;&amp;</span> <span class="cf">return</span><span class="kw">;</span>  <span class="va">first_char</span><span class="op">=</span><span class="va">$(</span> <span class="fu">zgrep</span> <span class="at">-m</span> 1 <span class="at">-o</span> ^. <span class="va">$file)</span><span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> seconds_to_now</span> <span class="kw">{</span> <span class="bu">[</span> <span class="ot">-z</span> <span class="va">$1</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="cf">return</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$((</span> <span class="va">$(</span><span class="fu">date</span> +%s<span class="va">)</span> <span class="op">-</span> <span class="va">$1</span> <span class="va">))</span><span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> seconds_to_duration</span> <span class="kw">{</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>   <span class="va">t</span><span class="op">=</span><span class="va">$1</span><span class="kw">;</span> <span class="va">d</span><span class="op">=</span><span class="va">$((t</span><span class="op">/</span><span class="dv">60</span><span class="op">/</span><span class="dv">60</span><span class="op">/</span><span class="dv">24</span><span class="va">))</span><span class="kw">;</span> <span class="va">h</span><span class="op">=</span><span class="va">$((t</span><span class="op">/</span><span class="dv">60</span><span class="op">/</span><span class="dv">60</span><span class="op">%</span><span class="dv">24</span><span class="va">))</span><span class="kw">;</span> <span class="va">m</span><span class="op">=</span><span class="va">$((t</span><span class="op">/</span><span class="dv">60</span><span class="op">%</span><span class="dv">60</span><span class="va">))</span><span class="kw">;</span> <span class="va">s</span><span class="op">=</span><span class="va">$((t</span><span class="op">%</span><span class="dv">60</span><span class="va">))</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>   <span class="bu">printf</span> <span class="st">&#39;%dd%02dh%02dm%02ds\n&#39;</span> <span class="va">$d</span> <span class="va">$h</span> <span class="va">$m</span> <span class="va">$s</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> s/^0d// <span class="at">-e</span> s/00<span class="pp">[</span><span class="ss">mh</span><span class="pp">]</span>//g  <span class="co"># do not show 0 days, hours, min</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="co">#############################################################</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="co"># call main to start things off, passing all the arguments. #</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="co">#############################################################</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="ex">main</span> <span class="va">$@</span></span></code></pre></div>
+</body>
+</html>
