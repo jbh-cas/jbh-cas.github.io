@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUSCO odb12 lineage lists</title>
+    <title>BUSCO ODB12 lineage lists</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
         body {
             font-family: Arial, sans-serif;
-            /*max-width: 600px;*/
-            /*
-            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .page-header {
             padding: 20px;
-            */
+            padding-left: 25px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            flex-shrink: 0;
+        }
+        .scrollable-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
         }
         .item {
             /*margin-bottom: 15px;*/
@@ -19,7 +37,7 @@
         .item-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
             margin-top: 0;
             margin-bottom: 4px; 
         }
@@ -30,12 +48,13 @@
             background-color: #007bff;
             color: white;
             border: none;
-            /*padding: 8px 12px;*/
+            padding: 4px 4px;
             font-size: 12px;
             cursor: pointer;
             border-radius: 4px;
             flex-shrink: 0;
         }
+
         .toggle-btn:hover {
             background-color: #0056b3;
         }
@@ -57,12 +76,19 @@
         .content.show {
             display: block;
         }
+        pre {
+           font-size: 13px;
+           font-family: Menlo, Monaco, Consolas, Arial, sans-serif;
+        }
     </style>
 </head>
 <body>
-    <h4>Datasets available to be used with BUSCO v5.8.1 and above (numbers in brackets indicate the number of marker gene profiles)
-    <br>odb10 lineages with number of gene profiles greater than the odb12 counterpart also shown with their counts</h4>
+    <div class="page-header">
+       <h4>Datasets available to be used with BUSCO v5.8.1 and above (numbers in brackets indicate the number of marker gene profiles)</h4>
+       <h4>odb10 lineages with number of gene profiles greater than its odb12 counterpart also shown with their counts</h4>
+    </div>
 
+   <div class="scrollable-content">
     <div class="item">
         <div class="item-header"><button class="toggle-btn" onclick="toggleContent(this)"><span class="icon">+</span></button>
             <pre>archaea_odb12 [195]</pre>
@@ -72,9 +98,9 @@
         - methanomicrobia_odb12 [589]
             - methanosarcinaceae_odb12 [971]
             - methanosarcina_odb12 [1620]
-            - methanomicrobiales_odb12 [819]	methanomicrobiales_odb10  882
+            - methanomicrobiales_odb12 [819]	        <b>methanomicrobiales_odb10  882</b>
                - methanomicrobiaceae_odb12 [993]
-        - halobacteria_odb12 [807]	halobacteria_odb10  853
+        - halobacteria_odb12 [807]	                <b>halobacteria_odb10</b>  853
             - halobacteriales_odb12 [909]
                 - halobacteriaceae_odb12 [975]
                 - haloarculaceae_odb12 [1058]
@@ -82,7 +108,7 @@
             - natrialbaceae_odb12 [1386]
                 - natrinema_odb12 [2207]
                 - haloterrigena_odb12 [1889]
-            - haloferacales_odb12 [1023]	haloferacales_odb10  1039
+            - haloferacales_odb12 [1023]	        <b>haloferacales_odb10</b>  1039
                 - haloferacaceae_odb12 [1225]
                     - halorubrum_odb12 [1677]
                     - haloferax_odb12 [2202]
@@ -98,21 +124,21 @@
         - nitrosopumilales_odb12 [1304]
             - nitrosopumilus_odb12 [1334]
     - thermoprotei_odb12 [345]
-        - sulfolobales_odb12 [1210]	sulfolobales_odb10  1244
+        - sulfolobales_odb12 [1210]	                <b>sulfolobales_odb10</b>  1244
         - thermoproteales_odb12 [477]
             - thermoproteaceae_odb12 [800]
-        - desulfurococcales_odb12 [443]	desulfurococcales_odb10  491
+        - desulfurococcales_odb12 [443]	                <b>desulfurococcales_odb10</b>  491
             - desulfurococcaceae_odb12 [480]
    </pre></div>
 
     <div class="item">
         <div class="item-header">
             <button class="toggle-btn" onclick="toggleContent(this)"><span class="icon">+</span></button>
-            <pre>bacteria_odb12 [116]   bacteria_odb10  124</pre>
+            <pre>bacteria_odb12 [116]                                 <b>bacteria_odb10  124</b></pre>
         </div>
         <pre class="content">
     - delta-epsilon_subdivisions_odb12 [199]
-        - deltaproteobacteria_odb12 [233]	deltaproteobacteria_odb10  259
+        - deltaproteobacteria_odb12 [233]	        <b>deltaproteobacteria_odb10  259</b>
     - acidobacteriota_odb12 [742]
         - acidobacteriaceae_odb12 [1174]
     - synergistota_odb12 [550]
@@ -125,34 +151,34 @@
     - spirochaetota_odb12 [205]
         - leptospiraceae_odb12 [1585]
         - brachyspira_odb12 [1343]
-        - spirochaetales_odb12 [271]	spirochaetales_odb10  345
+        - spirochaetales_odb12 [271]	                <b>spirochaetales_odb10  345</b>
             - treponema_odb12 [633]
             - borreliaceae_odb12 [762]
             - spirochaetaceae_odb12 [379]
-    - desulfuromonadales_odb12 [626]	desulfuromonadales_odb10  870
+    - desulfuromonadales_odb12 [626]	                <b>desulfuromonadales_odb10  870</b>
     - geobacteraceae_odb12 [783]
         - geobacter_odb12 [1043]
-    - desulfovibrionales_odb12 [729]	desulfovibrionales_odb10  777
-    - desulfobacterales_odb12 [461]	desulfobacterales_odb10  599
+    - desulfovibrionales_odb12 [729]	                <b>desulfovibrionales_odb10  777</b>
+    - desulfobacterales_odb12 [461]	                <b>desulfobacterales_odb10  599</b>
         - desulfobacteraceae_odb12 [662]
     - thermotogota_odb12 [548]
-    - aquificae_odb12 [507]	aquificae_odb10  549
+    - aquificae_odb12 [507]	                        <b>aquificae_odb10  549</b>
     - mycoplasmatota_odb12 [157]
         - mycoplasmatales_odb12 [205]
             - mycoplasma_odb12 [235]
         - acholeplasmataceae_odb12 [207]
             - phytoplasma_odb12 [202]
-        - entomoplasmatales_odb12 [330]	entomoplasmatales_odb10  332
+        - entomoplasmatales_odb12 [330]	                <b>entomoplasmatales_odb10  332</b>
             - spiroplasma_odb12 [366]
     - actinomycetota_odb12 [238]
-        - coriobacteriia_odb12 [421]	coriobacteriia_odb10  422
+        - coriobacteriia_odb12 [421]	                <b>coriobacteriia_odb10  422</b>
             - collinsella_odb12 [815]
             - atopobiaceae_odb12 [562]
                 - olsenella_odb12 [708]
             - eggerthellaceae_odb12 [686]
         - actinomycetes_odb12 [355]
             - frankia_odb12 [1256]
-            - streptosporangiales_odb12 [890]	streptosporangiales_odb10  1162
+            - streptosporangiales_odb12 [890]	        <b>streptosporangiales_odb10  1162</b>
                 - nocardiopsaceae_odb12 [1398]
                     - nocardiopsis_odb12 [1698]
                 - actinomadura_odb12 [1520]
@@ -163,7 +189,7 @@
             - pseudonocardiaceae_odb12 [954]
                 - pseudonocardia_odb12 [1277]
                 - amycolatopsis_odb12 [1831]
-            - propionibacteriales_odb12 [558]	propionibacteriales_odb10  649
+            - propionibacteriales_odb12 [558]	        <b>propionibacteriales_odb10  649</b>
                 - aeromicrobium_odb12 [1179]
                 - nocardioides_odb12 [1132]
                 - propionibacteriaceae_odb12 [689]
@@ -178,7 +204,7 @@
                     - mycolicibacterium_odb12 [1712]
                     - mycobacterium_odb12 [1512]
                 - corynebacterium_odb12 [995]
-            - micrococcales_odb12 [504]	micrococcales_odb10  537
+            - micrococcales_odb12 [504]	                <b>micrococcales_odb10  537</b>
                 - microbacteriaceae_odb12 [621]
                     - leucobacter_odb12 [915]
                     - microbacterium_odb12 [1023]
@@ -199,20 +225,20 @@
     - chloroflexota_odb12 [254]
     - cyanobacteriota_odb12 [719]
         - leptolyngbya_odb12 [1172]
-        - synechococcales_odb12 [667]	synechococcales_odb10  788
+        - synechococcales_odb12 [667]	                <b>synechococcales_odb10  788</b>
             - prochlorococcus_odb12 [1128]
             - synechococcaceae_odb12 [905]
-        - oscillatoriales_odb12 [1184]	oscillatoriales_odb10  1493
-        - chroococcales_odb12 [1121]	chroococcales_odb10  1493
-        - nostocales_odb12 [1434]	nostocales_odb10  1899
+        - oscillatoriales_odb12 [1184]	                <b>oscillatoriales_odb10  1493</b>
+        - chroococcales_odb12 [1121]	                <b>chroococcales_odb10  1493</b>
+        - nostocales_odb12 [1434]	                <b>nostocales_odb10  1899</b>
             - nostoc_odb12 [2036]
     - thermaceae_odb12 [977]
         - meiothermus_odb12 [1449]
         - thermus_odb12 [1318]
     - deinococcus_odb12 [1137]
     - bacillota_odb12 [201]
-        - bacilli_odb12 [295]	bacilli_odb10  302
-            - lactobacillales_odb12 [367]	lactobacillales_odb10  402
+        - bacilli_odb12 [295]	                        <b>bacilli_odb10  302</b>
+            - lactobacillales_odb12 [367]	        <b>lactobacillales_odb10  402</b>
                 - enterococcaceae_odb12 [714]
                     - enterococcus_odb12 [983]
                 - lactobacillaceae_odb12 [519]
@@ -223,7 +249,7 @@
                     - carnobacterium_odb12 [964]
                 - aerococcaceae_odb12 [603]
                 - streptococcaceae_odb12 [689]
-            - bacillales_odb12 [429]	bacillales_odb10  450
+            - bacillales_odb12 [429]	                <b>bacillales_odb10  450</b>
                 - staphylococcaceae_odb12 [809]
                     - salinicoccus_odb12 [1182]
                     - staphylococcus_odb12 [1317]
@@ -243,15 +269,15 @@
                     - lysinibacillus_odb12 [1416]
                     - oceanobacillus_odb12 [1102]
                     - bacillus_odb12 [778]
-        - selenomonadales_odb12 [586]	selenomonadales_odb10  796
+        - selenomonadales_odb12 [586]	                <b>selenomonadales_odb10  796</b>
             - selenomonadaceae_odb12 [747]
                 - selenomonas_odb12 [937]
         - veillonellaceae_odb12 [598]
             - megasphaera_odb12 [956]
             - veillonella_odb12 [1034]
         - erysipelotrichaceae_odb12 [444]
-        - clostridia_odb12 [233]	clostridia_odb10  247
-            - thermoanaerobacterales_odb12 [438]	thermoanaerobacterales_odb10  476
+        - clostridia_odb12 [233]	                <b>clostridia_odb10  247</b>
+            - thermoanaerobacterales_odb12 [438]	<b>thermoanaerobacterales_odb10  476</b>
             - eubacteriales_odb12 [240]
                 - clostridiaceae_odb12 [389]
                 - desulfosporosinus_odb12 [1189]
@@ -267,15 +293,15 @@
             - anaerococcus_odb12 [839]
             - peptoniphilus_odb12 [692]
     - bacteroidota-chlorobiota_group_odb12 [362]
-        - cytophagia_odb12 [691]	cytophagia_odb10  768
+        - cytophagia_odb12 [691]	                <b>cytophagia_odb10  768</b>
             - cytophagaceae_odb12 [856]
             - cyclobacteriaceae_odb12 [1336]
                 - algoriphagus_odb12 [1755]
             - hymenobacteraceae_odb12 [1140]
                 - hymenobacter_odb12 [1505]
                 - pontibacter_odb12 [1724]
-        - bacteroidia_odb12 [499]	bacteroidia_odb10  538
-            - bacteroidales_odb12 [517]	bacteroidales_odb10  541
+        - bacteroidia_odb12 [499]	                <b>bacteroidia_odb10  538</b>
+            - bacteroidales_odb12 [517]	                <b>bacteroidales_odb10  541</b>
                 - bacteroides_odb12 [1173]
                 - dysgonomonas_odb12 [1196]
                 - prevotellaceae_odb12 [878]
@@ -283,10 +309,10 @@
                 - rikenellaceae_odb12 [780]
                     - alistipes_odb12 [977]
         - chitinophagaceae_odb12 [820]
-        - sphingobacteriia_odb12 [803]	sphingobacteriia_odb10  1068
+        - sphingobacteriia_odb12 [803]	                <b>sphingobacteriia_odb10  1068</b>
             - pedobacter_odb12 [1167]
             - sphingobacterium_odb12 [1241]
-        - flavobacteriia_odb12 [671]	flavobacteriia_odb10  727
+        - flavobacteriia_odb12 [671]	                <b>flavobacteriia_odb10  727</b>
             - polaribacter_odb12 [1367]
             - nonlabens_odb12 [1510]
             - aquimarina_odb12 [1476]
@@ -302,8 +328,8 @@
     - planctomycetota_odb12 [400]
         - planctomycetaceae_odb12 [877]
     - pseudomonadota_odb12 [197]
-        - betaproteobacteria_odb12 [529]	betaproteobacteria_odb10  569
-            - burkholderiales_odb12 [597]	burkholderiales_odb10  688
+        - betaproteobacteria_odb12 [529]	        <b>betaproteobacteria_odb10  569</b>
+            - burkholderiales_odb12 [597]	        <b>burkholderiales_odb10  688</b>
                 - comamonadaceae_odb12 [825]
                     - variovorax_odb12 [2027]
                     - comamonas_odb12 [1262]
@@ -321,22 +347,22 @@
                     - burkholderia_odb12 [1963]
                     - paraburkholderia_odb12 [1718]
                     - cupriavidus_odb12 [1923]
-            - nitrosomonadales_odb12 [667]	nitrosomonadales_odb10  738
+            - nitrosomonadales_odb12 [667]	        <b>nitrosomonadales_odb10  738</b>
                 - methylophilaceae_odb12 [875]
                 - nitrosomonas_odb12 [1056]
             - thauera_odb12 [1243]
-            - neisseriales_odb12 [721]	neisseriales_odb10  804
+            - neisseriales_odb12 [721]	                <b>neisseriales_odb10  804</b>
                 - neisseria_odb12 [1112]
                 - chromobacteriaceae_odb12 [1036]
-        - alphaproteobacteria_odb12 [426]	alphaproteobacteria_odb10  432
-            - rickettsiales_odb12 [345]	rickettsiales_odb10  364
+        - alphaproteobacteria_odb12 [426]	        <b>alphaproteobacteria_odb10  432</b>
+            - rickettsiales_odb12 [345]	                <b>rickettsiales_odb10  364</b>
                 - anaplasmataceae_odb12 [537]
                 - rickettsiaceae_odb12 [563]
             - pelagibacter_odb12 [929]
             - hyphomicrobiales_odb12 [666]
                 - rhizobiaceae_odb12 [1041]
                     - sinorhizobium_odb12 [3013]
-                    - rhizobium-agrobacterium_group_odb12 [1672]	rhizobium-agrobacterium_group_odb10  1937
+                    - rhizobium-agrobacterium_group_odb12 [1672]  <b>rhizobium-agrobacterium_group_odb10  1937</b>
                         - rhizobium_odb12 [1796]
                         - agrobacterium_odb12 [2224]
                 - bartonella_odb12 [914]
@@ -361,7 +387,7 @@
                 - asticcacaulis_odb12 [1420]
                 - caulobacter_odb12 [1850]
                 - brevundimonas_odb12 [1400]
-            - sphingomonadales_odb12 [871]	sphingomonadales_odb10  1018
+            - sphingomonadales_odb12 [871]	        <b>sphingomonadales_odb10  1018</b>
                 - sphingopyxis_odb12 [1642]
                 - novosphingobium_odb12 [1101]
                 - sphingobium_odb12 [1494]
@@ -369,7 +395,7 @@
                 - erythrobacteraceae_odb12 [1047]
                     - porphyrobacter_odb12 [1631]
                     - erythrobacter_odb12 [1217]
-            - rhodobacterales_odb12 [760]	rhodobacterales_odb10  833
+            - rhodobacterales_odb12 [760]	        <b>rhodobacterales_odb10  833</b>
                 - paracoccaceae_odb12 [901]
                     - paracoccus_odb12 [1276]
                     - rhodobacter_odb12 [1343]
@@ -379,12 +405,12 @@
                 - phaeobacter_odb12 [2047]
                 - loktanella_odb12 [1747]
                 - jannaschia_odb12 [1527]
-            - rhodospirillales_odb12 [506]	rhodospirillales_odb10  617
+            - rhodospirillales_odb12 [506]	        <b>rhodospirillales_odb10  617</b>
                 - acetobacteraceae_odb12 [724]
                     - acetobacter_odb12 [1387]
                 - rhodospirillaceae_odb12 [653]
                 - azospirillum_odb12 [1776]
-        - gammaproteobacteria_odb12 [347]	gammaproteobacteria_odb10  366
+        - gammaproteobacteria_odb12 [347]	        <b>gammaproteobacteria_odb10  366</b>
             - enterobacterales_odb12 [542]
                 - enterobacteriaceae_odb12 [874]
                     - enterobacter_odb12 [2624]
@@ -398,32 +424,32 @@
                     - erwinia_odb12 [1277]
                     - pantoea_odb12 [1717]
                     - buchnera_odb12 [290]
-            - pseudomonadales_odb12 [704]	pseudomonadales_odb10  782
+            - pseudomonadales_odb12 [704]	        <b>pseudomonadales_odb10  782</b>
                 - marinobacter_odb12 [1468]
                 - pseudomonas_odb12 [1504]
-            - thiotrichales_odb12 [398]	thiotrichales_odb10  491
+            - thiotrichales_odb12 [398]	                <b>thiotrichales_odb10  491</b>
                 - francisellaceae_odb12 [839]
                 - piscirickettsiaceae_odb12 [642]
             - moraxellaceae_odb12 [763]
                 - psychrobacter_odb12 [1408]
                 - moraxella_odb12 [1053]
                 - acinetobacter_odb12 [1486]
-            - cellvibrionales_odb12 [782]	cellvibrionales_odb10  913
+            - cellvibrionales_odb12 [782]	        <b>cellvibrionales_odb10  913</b>
                 - cellvibrionaceae_odb12 [1038]
-            - pasteurellales_odb12 [1063]	pasteurellales_odb10  1100
+            - pasteurellales_odb12 [1063]	        <b>pasteurellales_odb10  1100</b>
             - aeromonadaceae_odb12 [1232]
                 - aeromonas_odb12 [2492]
-            - vibrionales_odb12 [1095]	vibrionales_odb10  1445
+            - vibrionales_odb12 [1095]	                <b>vibrionales_odb10  1445</b>
                 - vibrio_odb12 [1570]
                 - photobacterium_odb12 [2011]
-            - alteromonadales_odb12 [660]	alteromonadales_odb10  820
+            - alteromonadales_odb12 [660]	        <b>alteromonadales_odb10  820</b>
                 - alteromonas_odb12 [1828]
                 - psychromonas_odb12 [1337]
                 - idiomarina_odb12 [1274]
                 - shewanella_odb12 [1708]
                 - colwellia_odb12 [1370]
                 - pseudoalteromonas_odb12 [2022]
-            - oceanospirillales_odb12 [588]	oceanospirillales_odb10  619
+            - oceanospirillales_odb12 [588]	        <b>oceanospirillales_odb10  619</b>
                 - halomonadaceae_odb12 [973]
                     - halomonas_odb12 [1250]
                 - alcanivorax_odb12 [1611]
@@ -431,22 +457,22 @@
                     - marinobacterium_odb12 [1270]
                     - marinomonas_odb12 [1514]
             - methylococcaceae_odb12 [1052]
-            - xanthomonadales_odb12 [918]	xanthomonadales_odb10  1152
+            - xanthomonadales_odb12 [918]	        <b>xanthomonadales_odb10  1152</b>
                 - pseudoxanthomonas_odb12 [1446]
                 - luteimonas_odb12 [1256]
                 - lysobacter_odb12 [1219]
                 - stenotrophomonas_odb12 [2025]
                 - xanthomonas_odb12 [2040]
                 - rhodanobacteraceae_odb12 [1041]
-            - chromatiales_odb12 [516]	chromatiales_odb10  652
+            - chromatiales_odb12 [516]	                <b>chromatiales_odb10  652</b>
                 - ectothiorhodospiraceae_odb12 [636]
                     - thioalkalivibrio_odb12 [1198]
                 - chromatiaceae_odb12 [579]
-            - legionellales_odb12 [459]	legionellales_odb10  772
+            - legionellales_odb12 [459]	l               <b>egionellales_odb10  772</b>
                 - legionellaceae_odb12 [1441]
         </pre>
     </div>
-<pre>- eukaryota_odb12 [129]	eukaryota_odb10  255
+<pre> - eukaryota_odb12 [129]                                <b>eukaryota_odb10  255</b>
    - amoebozoa_odb12 [434]</pre>
     <div class="item">
         <div class="item-header">
@@ -456,11 +482,11 @@
         <pre class="content">
         - basidiomycota_odb12 [2409]
             - agaricomycetes_odb12 [3398]
-                - boletales_odb12 [4126]	boletales_odb10  4878
-                - agaricales_odb12 [3408]	agaricales_odb10  3870
+                - boletales_odb12 [4126]	        <b>boletales_odb10  4878</b>
+                - agaricales_odb12 [3408]	        <b>agaricales_odb10  3870</b>
                 - polyporales_odb12 [4690]
                     - polyporaceae_odb12 [5977]
-            - tremellomycetes_odb12 [3477]	tremellomycetes_odb10  4284
+            - tremellomycetes_odb12 [3477]	        <b>tremellomycetes_odb10  4284</b>
             - ustilaginomycetes_odb12 [4941]
             - pucciniomycetes_odb12 [3329]
             - microbotryomycetes_odb12 [3077]
@@ -468,34 +494,34 @@
             - sordariomycetes_odb12 [4492]
                 - xylariales_odb12 [5708]
                 - sordariales_odb12 [5603]
-                - hypocreales_odb12 [4349]	hypocreales_odb10  4494
+                - hypocreales_odb12 [4349]	        <b>hypocreales_odb10  4494</b>
                     - hypocreaceae_odb12 [4323]
                     - cordycipitaceae_odb12 [4122]
                     - ophiocordycipitaceae_odb12 [4329]
                     - clavicipitaceae_odb12 [4861]
                     - nectriaceae_odb12 [5719]
-                - glomerellales_odb12 [6103]	glomerellales_odb10  6841
+                - glomerellales_odb12 [6103]	        <b>glomerellales_odb10  6841</b>
             - leotiomycetes_odb12 [4305]
                 - helotiales_odb12 [5247]
                 - pseudeurotiaceae_odb12 [4512]
             - dothideomycetes_odb12 [4643]
-                - pleosporales_odb12 [6066]	pleosporales_odb10  6641
+                - pleosporales_odb12 [6066]	        <b>pleosporales_odb10  6641</b>
                     - pleosporaceae_odb12 [6813]
                 - mycosphaerellaceae_odb12 [5686]
             - eurotiomycetes_odb12 [3665]
                 - eurotiales_odb12 [4365]
                     - penicillium_odb12 [5866]
                     - aspergillus_odb12 [5034]
-                - onygenales_odb12 [3733]	onygenales_odb10  4862
+                - onygenales_odb12 [3733]	        <b>onygenales_odb10  4862</b>
                     - ajellomycetaceae_odb12 [5204]
-                - chaetothyriales_odb12 [4301]	chaetothyriales_odb10  6265
+                - chaetothyriales_odb12 [4301]	        <b>chaetothyriales_odb10  6265</b>
             - saccharomycetes_odb12 [2319]
                 - saccharomycetaceae_odb12 [3282]
                 - debaryomycetaceae_odb12 [3749]
                 - pichiaceae_odb12 [3118]
-        - microsporidia_odb12 [425]	microsporidia_odb10  600
+        - microsporidia_odb12 [425]	                <b>microsporidia_odb10  600</b>
         - chytridiomycota_odb12 [1017]
-        - mucoromycota_odb12 [1560]	mucoromycota_odb10  1614
+        - mucoromycota_odb12 [1560]	                <b>mucoromycota_odb10  1614</b>
             - mucorales_odb12 [2919]
         </pre>
     </div>
@@ -503,33 +529,33 @@
     <div class="item" id="metazoa">
         <div class="item-header">
             <button class="toggle-btn" onclick="toggleContent(this)"><span class="icon">+</span></button>
-            <pre>- metazoa_odb12 [672]	metazoa_odb10  954</pre>
+            <pre>- metazoa_odb12 [672]	                             <b>metazoa_odb10  954</b></pre>
         </div>
         <pre class="content">
         - cnidaria_odb12 [3203]
             - anthozoa_odb12 [3649]
         - vertebrata_odb12 [3390]
             - tetrapoda_odb12 [5623]
-                - sauropsida_odb12 [6118]	sauropsida_odb10  7480
+                - sauropsida_odb12 [6118]	        <b>sauropsida_odb10  7480</b>
                     - squamata_odb12 [11294]
-                    - aves_odb12 [6251]	aves_odb10  8338
-                        - passeriformes_odb12 [6684]	passeriformes_odb10  10844
+                    - aves_odb12 [6251]	                <b>aves_odb10  8338</b>
+                        - passeriformes_odb12 [6684]	<b>passeriformes_odb10  10844</b>
                         - galloanserae_odb12 [6841]
                 - mammalia_odb12 [12277]
                     - eutheria_odb12 [12463]
                         - euarchontoglires_odb12 [12960]
-                            - primates_odb12 [11834]	primates_odb10  13780
-                            - glires_odb12 [12556]	glires_odb10  13798
+                            - primates_odb12 [11834]	<b>primates_odb10  13780</b>
+                            - glires_odb12 [12556]	<b>glires_odb10  13798</b>
                                 - rodentia_odb12 [12639]
-                        - laurasiatheria_odb12 [12165]	laurasiatheria_odb10  12234
+                        - laurasiatheria_odb12 [12165]	<b>laurasiatheria_odb10  12234</b>
                             - artiodactyla_odb12 [12594]
-                            - carnivora_odb12 [13727]	carnivora_odb10  14502
+                            - carnivora_odb12 [13727]	<b>carnivora_odb10  14502</b>
             - actinopterygii_odb12 [7207]
-                - cyprinodontiformes_odb12 [14582]	cyprinodontiformes_odb10  15213
+                - cyprinodontiformes_odb12 [14582]	<b>cyprinodontiformes_odb10  15213</b>
         - lophotrochozoa_odb12 [1252]
-            - mollusca_odb12 [4421]	mollusca_odb10  5295
+            - mollusca_odb12 [4421]	                <b>mollusca_odb10  5295</b>
         - arthropoda_odb12 [1667]
-            - arachnida_odb12 [1123]	arachnida_odb10  2934
+            - arachnida_odb12 [1123]	                <b>arachnida_odb10  2934</b>
                 - acari_odb12 [1957]
                 - araneae_odb12 [3974]
             - hexapoda_odb12 [3112]
@@ -537,7 +563,7 @@
                     - endopterygota_odb12 [3754]
                         - lepidoptera_odb12 [5760]
                             - papilionoidea_odb12 [6917]
-                        - hymenoptera_odb12 [5920]	hymenoptera_odb10  5991
+                        - hymenoptera_odb12 [5920]	<b>hymenoptera_odb10  5991</b>
                             - aculeata_odb12 [6468]
                                 - apoidea_odb12 [6507]
                                 - formicidae_odb12 [7266]
@@ -552,7 +578,7 @@
                             - polyphaga_odb12 [4010]
                     - hemiptera_odb12 [3396]
             - crustacea_odb12 [1536]
-        - nematoda_odb12 [596]	nematoda_odb10  3131
+        - nematoda_odb12 [596]	                        <b>nematoda_odb10  3131</b>
             - chromadorea_odb12 [1126]
          </pre>
     </div>
@@ -565,14 +591,14 @@
         <pre class="content">
          - embryophyta_odb12 [2026]
             - eudicotyledons_odb12 [2805]
-                - brassicales_odb12 [4311]	brassicales_odb10  4596
+                - brassicales_odb12 [4311]	        <b>brassicales_odb10  4596</b>
                 - fabales_odb12 [7843]
                 - rosales_odb12 [9329]
                     - rosaceae_odb12 [10071]
                 - malpighiales_odb12 [6134]
                 - lamiales_odb12 [2874]
                 - solanales_odb12 [7934]
-            - liliopsida_odb12 [2821]	liliopsida_odb10  3236
+            - liliopsida_odb12 [2821]	                <b>liliopsida_odb10  3236</b>
                 - poales_odb12 [6282]
         - chlorophyta_odb12 [1523]
             - trebouxiophyceae_odb12 [2318]
@@ -583,13 +609,13 @@
             - phytophthora_odb12 [5522]
             - saprolegniaceae_odb12 [7429]
         - bacillariophyta_odb12 [2944]
-    - alveolata_odb12 [99]	alveolata_odb10  171
+    - alveolata_odb12 [99]	                        <b>alveolata_odb10  171</b>
         - ciliophora_odb12 [824]
         - apicomplexa_odb12 [481]
             - aconoidasida_odb12 [1378]
                 - piroplasmida_odb12 [1723]
                 - plasmodium_odb12 [4203]
-            - coccidia_odb12 [461]	coccidia_odb10  502
+            - coccidia_odb12 [461]	                <b>coccidia_odb10  502</b>
                 - cryptosporidium_odb12 [2794]
     - euglenozoa_odb12 [3611]
         - trypanosoma_odb12 [5397]
@@ -597,9 +623,8 @@
        </pre>
     </div>
 
-<pre>
-- viruses (no root dataset) not shown
-</pre>
+   <pre> - viruses (no root dataset) not shown<br></pre>
+</div>
 
     <script>
         function toggleContent(btn) {
