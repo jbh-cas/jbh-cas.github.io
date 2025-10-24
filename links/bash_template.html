@@ -6,21 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>bash_template</title>
   <style>
-    html {
+      :root {
+          --copy_icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z'/%3E%3Cpath fill='%23000' d='M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z'/%3E%3C/svg%3E");
+      }
+      .copy-icon {
+          background-image: var(--copy_icon);
+          /* background-color: lightblue; /* temporary - to see the element */
+          width: 16px;
+          height: 16px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          display: inline-block;
+          cursor: pointer;
+          float: right;
+          position: relative; /* Needed for tooltip positioning */
+      }
+      html {
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
     body {
-      margin: 0 auto;
-      max-width: 50em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 20px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
+        margin: 0 auto;
+        max-width: 50em;
+        padding: 20px 50px 50px;
+        hyphens: auto;
+        overflow-wrap: break-word;
+        text-rendering: optimizeLegibility;
+        font-kerning: normal;
     }
     @media (max-width: 600px) {
       body {
@@ -102,7 +114,7 @@
      background-color: whitesmoke;
      overflow: visible;
     }
-    hr {
+      hr {
       background-color: #1a1a1a;
       border: none;
       height: 1px;
@@ -148,20 +160,12 @@
       text-decoration: none;
     }
     code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { line-height: 1.25; }
@@ -186,46 +190,29 @@
         position: relative; left: -1em; text-align: right; vertical-align: baseline;
         border: none; display: inline-block;
         -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
+        -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
         color: #aaaaaa;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
     div.sourceCode
       {   }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
     code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
     code span.bu { color: #008000; } /* BuiltIn */
     code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
     code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
     code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
     code span.fu { color: #06287e; } /* Function */
-    code span.im { color: #008000; font-weight: bold; } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #007020; font-weight: bold; } /* Keyword */
     code span.op { color: #666666; } /* Operator */
     code span.ot { color: #007020; } /* Other */
     code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
     code span.ss { color: #bb6688; } /* SpecialString */
     code span.st { color: #4070a0; } /* String */
     code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
 </head>
 <body>
@@ -234,7 +221,7 @@
 from top to bottom.<br>Only one line, at the very end, is not in a bash
 function, so the entire script is parsed before running main().</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span><span class="copy-icon" title="Copy"></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> replace contents of start_processing, get_args and usage functions and add others as needed.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -287,7 +274,7 @@ https://github.com/calacademy-research/bioawk.CAS and<br />
 get_int_val.sh at
 https://github.com/calacademy-research/assembly_etc/scripts/get_int_val.sh</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span><span class="copy-icon" title="Copy"></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> replace contents of start_processing, get_args and usage functions and add others as needed.</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -386,7 +373,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="
 <p>This version handles more complex argument parsing with dash args and
 positional args, but is otherwise the same as Version 1.</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span><span class="copy-icon" title="Copy"></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">:</span> replace contents of start_processing, get_args and usage functions and add others as needed.</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -403,7 +390,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>   <span class="bu">local</span> <span class="va">nrecs</span><span class="op">=</span><span class="va">$(</span><span class="ex">num_fasta_recs</span><span class="va">)</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>   <span class="ex">msg</span> <span class="st">&quot;tsv:\t</span><span class="va">$tsv</span><span class="st">\nfasta:\t</span><span class="va">$fasta</span><span class="st">, </span><span class="va">$nrecs</span><span class="st"> recs\nthreads:</span><span class="va">$threads</span><span class="st">&quot;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sleep</span> <span class="va">$((RANDOM</span> <span class="op">%</span> <span class="dv">6</span><span class="va">))</span>  <span class="co"># sleep from 0 to 5 seconds depending on RANDOW value</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sleep</span> <span class="va">$((RANDOM</span> <span class="op">%</span> <span class="dv">6</span><span class="va">))</span>  <span class="co"># sleep from 0 to 5 seconds depending on RANDOM value</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>   <span class="ex">show_time_spent</span> <span class="va">$start_time</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
@@ -506,4 +493,32 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 <span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="ex">main</span> <span class="va">$@</span></span></code></pre></div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add click handler to all copy icons
+        document.querySelectorAll('.copy-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                // Find the parent <pre> element
+                const preBlock = this.closest('pre');
+
+                if (preBlock) {
+                    // Get the text content
+                    const textToCopy = preBlock.textContent;
+
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Optional: Visual feedback
+                        this.style.opacity = '0.5';
+                        setTimeout(() => {
+                            this.style.opacity = '1';
+                        }, 400);
+                    }).catch(err => {
+                        console.error('Failed to copy:', err);
+                        alert('Failed to copy to clipboard');
+                    });
+                }
+            });
+        });
+    });
+</script>
 </html>
